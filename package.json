@@ -1,5 +1,5 @@
 {
-  "name": "swagger-splitter",
+  "name": "swagger-split",
   "version": "1.0.0",
   "description": "Split giant swagger files into smaller files",
   "main": "index.js",
@@ -16,8 +16,6 @@
     "camelcase": "^4.0.0",
     "lodash": "^4.17.2",
     "minimist": "^1.2.0",
-    "json-refs": "^2.1.6",
-    "json-schema-ref-parser": "^3.1.2",
     "js-yaml": "^3.7.0"
   },
   "jscsConfig": {
