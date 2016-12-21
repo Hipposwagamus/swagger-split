@@ -39,7 +39,7 @@ function bundle(indexFile, options){
   const obj = constructSwagger(loadFile(indexFile), initialDir, maxDepth);
 
   if(!_.isNil(options.outFile)){
-    let type = path.extname(outFile);
+    let type = path.extname(options.outFile);
     if(type === ".json") {
       fs.writeFileSync(options.outFile, JSON.stringify(obj));
     } else if (type === ".yaml") {

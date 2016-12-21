@@ -5,19 +5,21 @@ const _ = require('lodash');
 const path = require('path');
 const camelCase = require('camelcase');
 
-if(args._.length === 3){
-  const yamlFile = args._[0];
-  const depth = args._[1];
-  const outputDir = args._[2];
-  try {
-    var doc = yaml.safeLoad(fs.readFileSync(yamlFile, 'utf8'));
-    fs.mkdirSync(outputDir);
-    split(doc, depth, outputDir);
-  } catch (e) {
-    console.error(e);
+function run() {
+  if(args._.length === 3){
+    const yamlFile = args._[0];
+    const depth = args._[1];
+    const outputDir = args._[2];
+    try {
+      var doc = yaml.safeLoad(fs.readFileSync(yamlFile, 'utf8'));
+      fs.mkdirSync(outputDir);
+      split(doc, depth, outputDir);
+    } catch (e) {
+      console.error(e);
+    }
+  } else {
+    console.error("not enough args. Must be node index.js <file-to-read> <depth> <output-dir>");
   }
-} else {
-  console.error("not enough args. Must be node index.js <file-to-read> <depth> <output-dir>");
 }
 
 function directify(name){
@@ -55,10 +57,19 @@ function split(obj, depth, dir){
     fs.writeFileSync(path.join(dir, "index.yaml"), yaml.dump(indexObj));
 
   }
+}
 
-  function splitFile(file, depth, outputDirectory){
-    var doc = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
-    fs.mkdirSync(outputDirectory);
-    split(doc, depth, outputDirectory);
-  }
+
+function splitFile(file, depth, outputDirectory){
+  var doc = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+  fs.mkdirSync(outputDirectory);
+  split(doc, depth, outputDirectory);
+}
+
+if (!module.parent) {
+  run();
+} else {
+  module.exports = {
+    splitFile
+  };
 }
