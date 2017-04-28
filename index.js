@@ -4,6 +4,7 @@ const yaml = require('js-yaml');
 const _ = require('lodash');
 const path = require('path');
 const camelCase = require('camelcase');
+const bundle = require('./bundler.js');
 
 function run() {
   if(args._.length === 3){
