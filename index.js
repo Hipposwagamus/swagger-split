@@ -71,6 +71,7 @@ if (!module.parent) {
   run();
 } else {
   module.exports = {
-    splitFile
+    splitFile,
+    bundle: bundle.bundle
   };
 }
